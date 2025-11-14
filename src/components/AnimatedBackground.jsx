@@ -3,7 +3,7 @@ import { useMemo } from "react";
 
 const AnimatedBackground = () => {
   const hearts = useMemo(() => 
-  Arrary.from({ length: 30}, (_, i) => ({
+  Array.from({ length: 30}, (_, i) => ({
     id: i,
     x: Math.random() * window.innerWidth,
     delay: Math.random() * 5,
@@ -13,17 +13,17 @@ const AnimatedBackground = () => {
 );
 
   const flowers = useMemo(() => 
-  Arrary.from({ length: 25}, (_, i) => ({
+  Array.from({ length: 25}, (_, i) => ({
     id: i,
     x: Math.random() * window.innerWidth,
     delay: Math.random() * 6,
-    duration: Math.random() * 8 + 14,
+    duration: Math.random() * 10 + 14,
   })),
   []
 );
 
   const bubbles = useMemo(() => 
-  Arrary.from({ length: 20}, (_, i) => ({
+  Array.from({ length: 20}, (_, i) => ({
     id: i,
     x: Math.random() * window.innerWidth,
     scale: Math.random() * 0.5 + 0.5,
@@ -37,14 +37,14 @@ const AnimatedBackground = () => {
   return <>
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
       {
-        hearts.map((heart => {
+        hearts.map((heart => (
           <motion.div 
           key={`heart-${heart.id}`}
           className="absolute text-2xl text-pink-400"
           initial={{
             x: heart.x,
             y: window.innerHeight + 50,
-            opacity: 0.8,
+            opacity: 0.7,
           }}
           animate={{
             y: -120,
@@ -58,17 +58,17 @@ const AnimatedBackground = () => {
           }}>
             ❤️
           </motion.div>
-        }))
+        )))
       }
       {
-        flowers.map((flower => {
+        flowers.map((flower => (
           <motion.div 
           key={`flower-${flower.id}`}
           className="absolute text-3xl text-pink-400"
           initial={{
             x: flower.x,
-            y: window.innerHeight + 50,
-            opacity: 0.8,
+            y: -60,
+            opacity: 0.5,
           }}
           animate={{
             y: window.innerHeight + 60,
@@ -82,10 +82,10 @@ const AnimatedBackground = () => {
           }}>
             🌸
           </motion.div>
-        }))
+        )))
       }
       {
-        bubbles.map((bubble => {
+        bubbles.map((bubble => (
           <motion.div 
           key={`bubble-${bubble.id}`}
           className="absolute w-6 h-6 rounded-full bg-gradient-to-r from-pink-200/40 to-pink-400/20 backdrop-blur-sm"
@@ -93,7 +93,7 @@ const AnimatedBackground = () => {
             x: bubble.x,
             y: window.innerHeight + 50,
             scale: bubble.scale,
-            opacity: 0.8,
+            opacity: 0.6,
           }}
           animate={{
             y: -120,
@@ -106,7 +106,7 @@ const AnimatedBackground = () => {
             delay: bubble.delay,
             ease: 'easeInOut',
           }} />
-        }))
+        )))
       }
     </div>
   
